@@ -17,4 +17,5 @@ xgboost==1.7.6
 shap==0.42.1
 albumentations==1.4.22
 albucore==0.0.21
-tensorflow 
+tensorflow
+gunicorn>=21.0.0
