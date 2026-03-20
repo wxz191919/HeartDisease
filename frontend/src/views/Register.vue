@@ -139,7 +139,7 @@ export default {
       }
 
       try {
-        await axios.post(`${API_BASE_URL}/register`, {
+        await axios.post(`${API_BASE_URL}/auth/register`, {
           username: this.username,
           password: this.password,
           role: this.role
