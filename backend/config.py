@@ -2,20 +2,17 @@ import os
 from datetime import timedelta
 
 class Config:
-    # Railway 插件提供 MySQL 环境变量
-    MYSQL_HOST = os.environ.get('MYSQLHOST', os.environ.get('MYSQL_HOST', 'localhost'))
-    MYSQL_PORT = os.environ.get('MYSQLPORT', os.environ.get('MYSQL_PORT', '3306'))
-    MYSQL_USER = os.environ.get('MYSQLUSER', os.environ.get('MYSQL_USER', 'root'))
-    MYSQL_PASSWORD = os.environ.get('MYSQLPASSWORD', os.environ.get('MYSQL_PASSWORD', '19491001China'))
-    MYSQL_DATABASE = os.environ.get('MYSQLDATABASE', os.environ.get('MYSQL_DATABASE', 'heart_db'))
+    # Railway MySQL 插件提供完整 URL；无则用 SQLite 保证能启动
+    DATABASE_URL = os.environ.get('MYSQL_URL') or os.environ.get('DATABASE_URL')
     
-    # Railway MySQL 插件提供完整 URL
-    DATABASE_URL = os.environ.get('MYSQL_URL')
-    
-    if DATABASE_URL:
+    if DATABASE_URL and DATABASE_URL.startswith('mysql'):
+        SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    elif DATABASE_URL:
         SQLALCHEMY_DATABASE_URI = DATABASE_URL
     else:
-        SQLALCHEMY_DATABASE_URI = f'mysql+mysqlconnector://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}'
+        # 无 MySQL 时用 SQLite，避免 Railway 上启动即崩溃
+        _tmp = os.environ.get('SQLITE_PATH', '/tmp/heart.db')
+        SQLALCHEMY_DATABASE_URI = f'sqlite:///{_tmp}'
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
