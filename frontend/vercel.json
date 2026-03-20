@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx vue-cli-service build",
+  "buildCommand": "node node_modules/@vue/cli-service/bin/vue-cli-service.js build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "vue"
