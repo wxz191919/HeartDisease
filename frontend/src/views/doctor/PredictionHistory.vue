@@ -98,7 +98,7 @@
 
 <script>
 import axios from 'axios';
-import API_BASE_URL from '../config.js';
+import API_BASE_URL from '../../config.js';
 
 export default {
   name: 'PredictionHistory',

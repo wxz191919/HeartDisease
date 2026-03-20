@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// 机器学习API的基础URL - 支持环境变量
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002/api';
+// 机器学习API的基础URL - Vue CLI用VUE_APP_*前缀
+const API_BASE_URL = (process.env && process.env.VUE_APP_API_URL) || 'http://localhost:5002/api';
 
 // 创建一个专用的axios实例
 const apiClient = axios.create({

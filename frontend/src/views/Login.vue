@@ -115,6 +115,7 @@ import axios from 'axios'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
+import API_BASE_URL from '../config.js'
 
 export default {
   name: 'Login',

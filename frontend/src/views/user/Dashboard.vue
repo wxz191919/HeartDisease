@@ -180,7 +180,7 @@
 
 <script>
 import * as echarts from 'echarts'
-import API_BASE_URL from '../config.js'
+import API_BASE_URL from '../../config.js'
 import { ref, reactive, onMounted, onBeforeUnmount, markRaw, nextTick } from 'vue'
 
 export default {
