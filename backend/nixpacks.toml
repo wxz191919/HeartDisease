@@ -1,3 +1,4 @@
-# Railway/Nixpacks：指定启动命令
+providers = ["python"]
+
 [start]
-cmd = "python3 -m gunicorn --bind 0.0.0.0:$PORT 'app:create_app()'"
+cmd = "/opt/venv/bin/python3 -m gunicorn --bind 0.0.0.0:$PORT 'app:create_app()'"
